@@ -1,5 +1,6 @@
 package com.mazasoft.springcourse.services;
 
+import com.mazasoft.springcourse.models.Mood;
 import com.mazasoft.springcourse.models.Person;
 import com.mazasoft.springcourse.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,8 @@ public class PeopleService {
 
     @Transactional
     public void save(Person person) {
+        person.setCreatedAt(new Date());
+        person.setMood(Mood.CALM);
         peopleRepository.save(person);
     }
 
